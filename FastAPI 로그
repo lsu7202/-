@@ -1,0 +1,22 @@
+1. 가상환경 설정 virtualenv 사용
+
+2. pip install fastapi uvicorn motor python-dotenv pydantic
+
+4. fastAPI 실행하기 : uvicorn main:app --reload (main.py 의 fastAPI app변수를 실행한다는뜻)
+
+.env파일 만들기
+만드는 이유 : 환경변수를 저장하는 텍스트파일로 깃에 업로드 제외시키고 api 키 등 관리하기 위한 목적.
+디렉토리 : 루트디렉토리
+
+import os
+from dotenv import load_dotenv
+
+load_dotenv() # 이 함수를 호출해야 .env 파일의 변수들이 로드됩니다.
+
+MONGO_URI = os.getenv("MONGO_URI")
+DB_NAME = os.getenv("DB_NAME")
+
+
+
+
+
