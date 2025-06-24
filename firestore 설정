@@ -1,0 +1,26 @@
+https://console.firebase.google.com/
+
+1. 프로젝트명 : myApp
+서비스계정생성, json 키 다운
+
+3. 파이썬코드 수정
+SERVICE_ACCOUNT_KEY_PATH = "myapp-dc703-firebase-adminsdk-fbsvc-74be26f983.json"
+
+try:
+    cred = credentials.Certificate(SERVICE_ACCOUNT_KEY_PATH)
+    firebase_admin.initialize_app(cred)
+    print("Firebase Admin SDK initialized successfully!")
+except Exception as e:
+    print(f"Error initializing Firebase Admin SDK: {e}")
+    # 서비스 계정 파일이 없거나 잘못된 경우 앱이 시작되지 않도록 처리할 수 있습니다.
+    # 여기서는 예시를 위해 print만 하고 진행하지만, 실제 프로덕션에서는 다르게 처리해야 합니다.
+
+3. 파이어스토어 데이터베이스 생성
+
+4. 테스트 : curl post
+curl -X POST \
+  -H "Content-Type: application/json" \
+  -d '{"title": "첫 번째 게시글", "content": "파이어스토어 연동 테스트!", "author": "테스터1"}' \
+  http://127.0.0.1:8000/posts/
+
+응답 : {"title":"첫 번째 게시글","content":"파이어스토어 연동 테스트!","author":"테스터1","created_at":null,"id":"rAYJZ2Qyl872bOMUHiWy"}
