@@ -4,17 +4,25 @@
 
 4. fastAPI 실행하기 : uvicorn main:app --reload (main.py 의 fastAPI app변수를 실행한다는뜻)
 
-.env파일 만들기
-만드는 이유 : 환경변수를 저장하는 텍스트파일로 깃에 업로드 제외시키고 api 키 등 관리하기 위한 목적.
-디렉토리 : 루트디렉토리
+-----------------------------------------------------------------------------------
 
-import os
-from dotenv import load_dotenv
+1. 데이터 모델 정의하기
 
-load_dotenv() # 이 함수를 호출해야 .env 파일의 변수들이 로드됩니다.
+class Post(BaseModel):
+    title: str
+    content: str
+    author: Optional[str] = "익명"
+    created_at: Optional[str] = None # Firestore에서 타임스탬프 처리 예정
 
-MONGO_URI = os.getenv("MONGO_URI")
-DB_NAME = os.getenv("DB_NAME")
+Optional 이란 무조건 넣지 않아도 되는 값, 글쓴이 : 기본값 익명, 작성시간 : 기본값 없음 None
+
+2. exclude_unset=True 가 무엇인가
+기본값이 None 인 인스턴스가 초기화 되지 않으면 return 되는 딕셔너리에서 제외시킴
+
+부분 업데이트 (Partial Update): PUT이나 PATCH 요청을 통해 데이터베이스의 일부 필드만 업데이트할 때 유용합니다. 클라이언트에서 보내지 않은 필드(unset 필드)는 데이터베이스에 반영되지 않도록 하여 기존 값을 덮어쓰는 것을 방지할 수 있습니다.
+명확성: 특정 필드가 명시적으로 값이 할당되지 않았음을 표현할 때 유용합니다.
+
+
 
 
 
