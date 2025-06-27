@@ -24,3 +24,14 @@ curl -X POST \
   http://127.0.0.1:8000/posts/
 
 응답 : {"title":"첫 번째 게시글","content":"파이어스토어 연동 테스트!","author":"테스터1","created_at":null,"id":"rAYJZ2Qyl872bOMUHiWy"}
+
+
+파이어베이스 초기화 코드
+
+ios/Runner/GoogleService-Info.plist 추가
+
+ios 버전 14 이상 수정
+
+await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
